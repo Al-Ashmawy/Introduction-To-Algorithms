@@ -11,6 +11,7 @@
     
 */
 #include <stdio.h>
+#include <stdlib.h>
 
 void merge_sort(int arr[], int length);
 
@@ -19,7 +20,7 @@ int main(void) {
     int length;
     scanf("%i", &length);
 
-    int arr[length];
+    int* arr = malloc(length * sizeof(int));
     for (int i = 0; i < length; ++i) {
         printf("Enter Element %i: ", i + 1);
         scanf("%i", arr + i);
@@ -30,6 +31,8 @@ int main(void) {
     for (int i = 0; i < length; ++i) {
         printf("%i ", arr[i]);
     }
+
+    free(arr);
 }
 
 void merge_sort(int arr[], int length) {
@@ -42,7 +45,7 @@ void merge_sort(int arr[], int length) {
     // Sort Right Half
     merge_sort(arr + length / 2, length - length / 2);
 
-    int merged[length];
+    int* merged = malloc(length * sizeof(int));
     int l = 0, r = length / 2;
     for (int i = 0; i < length; ++i) {
         if (l < length / 2 && (r == length || arr[l] <= arr[r])) {
@@ -54,4 +57,6 @@ void merge_sort(int arr[], int length) {
 
     for (int i = 0; i < length; ++i)
         arr[i] = merged[i];
+
+    free(merged);
 }

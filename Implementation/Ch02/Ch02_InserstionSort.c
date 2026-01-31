@@ -13,6 +13,7 @@
     --------------------------------------------------------------------
 */
 #include <stdio.h>
+#include <stdlib.h>
 
 void insertion_sort(int arr[], int length);
 
@@ -21,7 +22,7 @@ int main(void) {
     int length;
     scanf("%i", &length);
 
-    int arr[length];
+    int* arr = malloc(length * sizeof(int));
     for (int i = 0; i < length; ++i) {
         printf("Enter Element %i: ", i + 1);
         scanf("%i", arr + i);
@@ -32,6 +33,8 @@ int main(void) {
     for (int i = 0; i < length; ++i) {
         printf("%i ", arr[i]);
     }
+
+    free(arr);
 }
 
 void insertion_sort(int arr[], int length) {
